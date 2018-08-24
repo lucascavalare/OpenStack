@@ -1,0 +1,19 @@
+heat_template_version: 2017-09-01
+description: A simple Auto Scaling based on Load.
+resources:
+  server:
+    type: OS::Nova::Server
+    properties:
+      block_device_mapping:
+        - device_name: vda
+          delete_on_termination: true
+          volume_id: { get_resource: volume }
+      flavor: m1.medium.cpu-shared
+      networks:
+        - network: private
+
+  volume:
+    type: OS::Cinder::Volume
+    properties:
+      image: 'CentOS-7-x86_64'
+      size: 1
