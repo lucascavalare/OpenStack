@@ -25,7 +25,7 @@ resources:
             #sed '$ a Welcome to nginx1!' /usr/share/nginx/html/index.html
             #sudo mv /usr/share/nginx/html/index.html /usr/share/nginx/html/index.html.bkp
             #sudo touch /usr/share/nginx/html/index.html
-            #sudo echo 'OpenStack-Nginx-1' > /usr/share/nginx/html/index.html
+            echo 'OpenStack-Apache-1' > /var/www/html/index.html
           params:
            $shared_ip: flavor
            
