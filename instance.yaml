@@ -22,7 +22,7 @@ resources:
             systemctl enable nginx
             systemctl start nginx
             echo 'OpenStack-Nginx-Node1' > /var/share/nginx/html/index.html
-         params:
+          params:
            $shared_ip: flavor
            
       name: openstack-nginx-node2
@@ -43,7 +43,7 @@ resources:
             systemctl enable nginx
             systemctl start nginx
             echo 'OpenStack-Nginx-Node2' > /var/share/nginx/html/index.html
-         params:
+          params:
            $shared_ip: flavor
 
    
