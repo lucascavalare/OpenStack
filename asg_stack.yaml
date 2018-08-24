@@ -1,0 +1,52 @@
+heat_template_version: 2017-09-01
+
+description: >
+  This is a very simple template that illustrates the basic features
+  of OS::Heat::AutoScalingGroup and demonstrates that these features
+  are available even when the scaled resource is a nested stack.  By
+  virtue of its simplicity this example should be usable in many
+  contexts.  In particular, this example does not require Neutron nor
+  a load balancer nor any particular support for software in the VMs.
+  In fact, the VMs in this example do not actually do anything.  This
+  example does no automatic scaling, but does discuss manual scaling.
+  For a more complete example, see autoscaling.yaml.
+
+resources:
+  asg:
+    type: OS::Heat::AutoScalingGroup
+    properties:
+      resource:
+        type: instance.yaml
+      min_size: 1
+      desired_capacity: 2
+      max_size: 3
+
+  scale_up_policy:
+    type: OS::Heat::ScalingPolicy
+    properties:
+      adjustment_type: change_in_capacity
+      auto_scaling_group_id: {get_resource: asg}
+      cooldown: 60
+      scaling_adjustment: 1
+
+  scale_dn_policy:
+    type: OS::Heat::ScalingPolicy
+    properties:
+      adjustment_type: change_in_capacity
+      auto_scaling_group_id: {get_resource: asg}
+      cooldown: 60
+      scaling_adjustment: '-1'
+
+outputs:
+  scale_up_url:
+    description: >
+      This URL is the webhook to scale up the group.  You can invoke
+      the scale-up operation by doing an HTTP POST to this URL; no
+      body nor extra headers are needed.
+    value: {get_attr: [scale_up_policy, alarm_url]}
+  scale_dn_url:
+    description: >
+      This URL is the webhook to scale down the group.  You can invoke
+      the scale-down operation by doing an HTTP POST to this URL; no
+      body nor extra headers are needed.
+    value: {get_attr: [scale_dn_policy, alarm_url]}
