@@ -11,17 +11,18 @@ resources:
       security_groups: [default, global_ssh, global_http] 
       networks:
         - network: private
-      user_data_format: RAW
-      user_data: |
-        #!/bin/sh
-        #while [ 1 ] ; do echo $((13**99)) 1>/dev/null 2>&1; done
-        #sudo -i
-        yum -y update
-        yum install -y nginx
-        systemctl enable nginx
-        systemctl start nginx
-        echo 'OpenStack-Nginx-Node1' > /var/share/nginx/html/index.html
-        
+      user_data:
+        str_replace:
+          template: |
+            #!/bin/bash
+            #while [ 1 ] ; do echo $((13**99)) 1>/dev/null 2>&1; done
+            #sudo -i
+            yum -y update
+            yum install -y nginx
+            systemctl enable nginx
+            systemctl start nginx
+            echo 'OpenStack-Nginx-Node1' > /var/share/nginx/html/index.html
+
       name: openstack-nginx-node2
       image: 'CentOS-7-x86_64'
       flavor: m1.medium.cpu-shared
@@ -29,17 +30,18 @@ resources:
       security_groups: [default, global_ssh, global_http] 
       networks:
         - network: private
-      user_data_format: RAW
-      user_data: |
-        #!/bin/sh
-        #while [ 1 ] ; do echo $((13**99)) 1>/dev/null 2>&1; done
-        #sudo -i
-        yum -y update
-        yum install -y nginx
-        systemctl enable nginx
-        systemctl start nginx
-        echo 'OpenStack-Nginx-Node2' > /var/share/nginx/html/index.html
-        
+      user_data:
+        str_replace:
+          template: |
+            #!/bin/bash
+            #while [ 1 ] ; do echo $((13**99)) 1>/dev/null 2>&1; done
+            #sudo -i
+            yum -y update
+            yum install -y nginx
+            systemctl enable nginx
+            systemctl start nginx
+            echo 'OpenStack-Nginx-Node2' > /var/share/nginx/html/index.html
+
    
    
    
