@@ -1,0 +1,15 @@
+heat_template_version: 2017-09-01  
+description: A simple server. 
+resources:  
+  server:
+    type: OS::Nova::Server
+    properties:
+      image: 'CentOS-7-x86_64'
+      flavor: m1.medium.cpu-shared
+      key_name: cloud3
+      networks:
+        - network: private
+      user_data_format: RAW
+      user_data: |
+        #!/bin/sh
+        while [ 1 ] ; do echo $((13**99)) 1>/dev/null 2>&1; done
