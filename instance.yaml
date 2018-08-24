@@ -15,9 +15,9 @@ resources:
       user_data: |
         #!/bin/sh
         #while [ 1 ] ; do echo $((13**99)) 1>/dev/null 2>&1; done
-        sudo -i
+        #sudo -i
         sudo yum -y update
-        yum install nginx
+        yum install -y nginx
         systemctl enable nginx
         systemctl start nginx
         echo 'OpenStack-Nginx-Node1' > /var/share/nginx/html/index.html
@@ -33,9 +33,9 @@ resources:
       user_data: |
         #!/bin/sh
         #while [ 1 ] ; do echo $((13**99)) 1>/dev/null 2>&1; done
-        sudo -i
+        #sudo -i
         sudo yum -y update
-        yum install nginx
+        yum install -y nginx
         systemctl enable nginx
         systemctl start nginx
         echo 'OpenStack-Nginx-Node2' > /var/share/nginx/html/index.html
