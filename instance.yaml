@@ -1,5 +1,7 @@
 heat_template_version: 2017-09-01  
-description: A simple server. 
+
+# INSTANCES
+description: Web Server Instances
 resources:  
   server: 
     type: OS::Nova::Server
