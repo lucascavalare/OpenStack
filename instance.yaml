@@ -17,15 +17,15 @@ resources:
         str_replace:
           template: |
             #!/bin/bash
-            rpm -ivh http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-centos-7-0.el7.ngx.noarch.rpm
+            #rpm -ivh http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-centos-7-0.el7.ngx.noarch.rpm
             yum -y update
-            yum install -y nginx
-            systemctl enable nginx
-            systemctl start nginx
+            yum install -y httpd
+            systemctl enable httpd
+            systemctl start httpd
             #sed '$ a Welcome to nginx1!' /usr/share/nginx/html/index.html
-            sudo mv /usr/share/nginx/html/index.html /usr/share/nginx/html/index.html.bkp
-            sudo touch /usr/share/nginx/html/index.html
-            sudo echo 'OpenStack-Nginx-1' > /usr/share/nginx/html/index.html
+            #sudo mv /usr/share/nginx/html/index.html /usr/share/nginx/html/index.html.bkp
+            #sudo touch /usr/share/nginx/html/index.html
+            #sudo echo 'OpenStack-Nginx-1' > /usr/share/nginx/html/index.html
           params:
            $shared_ip: flavor
            
