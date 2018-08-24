@@ -17,8 +17,6 @@ resources:
         str_replace:
           template: |
             #!/bin/bash
-            #while [ 1 ] ; do echo $((13**99)) 1>/dev/null 2>&1; done
-            #sudo -i
             rpm -ivh http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-centos-7-0.el7.ngx.noarch.rpm
             yum -y update
             yum install -y nginx
@@ -39,8 +37,6 @@ resources:
         str_replace:
           template: |
             #!/bin/bash
-            #while [ 1 ] ; do echo $((13**99)) 1>/dev/null 2>&1; done
-            #sudo -i
             rpm -ivh http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-centos-7-0.el7.ngx.noarch.rpm
             yum -y update
             yum install -y nginx
