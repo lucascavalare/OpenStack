@@ -1,9 +1,10 @@
 heat_template_version: 2017-09-01  
 description: A simple server. 
 resources:  
-  server:
+  server: 
     type: OS::Nova::Server
     properties:
+      name: openStack-nginx-node1
       image: 'CentOS-7-x86_64'
       flavor: m1.medium.cpu-shared
       key_name: cloud3
@@ -19,4 +20,26 @@ resources:
         yum install nginx
         systemctl enable nginx
         systemctl start nginx
-        #echo 'OpenStack-Nginx-Node1' > /var/www/html/index.html
+        echo 'OpenStack-Nginx-Node1' > /var/www/html/index.html
+        
+      name: openStack-nginx-node2
+      image: 'CentOS-7-x86_64'
+      flavor: m1.medium.cpu-shared
+      key_name: cloud3
+      security_groups: [default, global_ssh, global_http] 
+      networks:
+        - network: private
+      user_data_format: RAW
+      user_data: |
+        #!/bin/sh
+        #while [ 1 ] ; do echo $((13**99)) 1>/dev/null 2>&1; done
+        sudo -i
+        sudo yum -y update
+        yum install nginx
+        systemctl enable nginx
+        systemctl start nginx
+        echo 'OpenStack-Nginx-Node2' > /var/www/html/index.html
+        
+   
+   
+   
