@@ -22,8 +22,10 @@ resources:
             yum install -y nginx
             systemctl enable nginx
             systemctl start nginx
-            sed '$ a Welcome to nginx1!' /usr/share/nginx/html/index.html
-            #mv /usr/share/nginx/html/index.html /usr/share/nginx/html/index.html.bkp
+            #sed '$ a Welcome to nginx1!' /usr/share/nginx/html/index.html
+            sudo mv /usr/share/nginx/html/index.html /usr/share/nginx/html/index.html.bkp
+            sudo touch /usr/share/nginx/html/index.html
+            sudo echo 'OpenStack-Nginx-1' > /usr/share/nginx/html/index.html
           params:
            $shared_ip: flavor
            
