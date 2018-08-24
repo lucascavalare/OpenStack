@@ -4,7 +4,7 @@ resources:
   server: 
     type: OS::Nova::Server
     properties:
-      name: openStack-nginx-node1
+      name: openstack-nginx-node1
       image: 'CentOS-7-x86_64'
       flavor: m1.medium.cpu-shared
       key_name: cloud3
@@ -22,7 +22,7 @@ resources:
         systemctl start nginx
         echo 'OpenStack-Nginx-Node1' > /var/share/nginx/html/index.html
         
-      name: openStack-nginx-node2
+      name: openstack-nginx-node2
       image: 'CentOS-7-x86_64'
       flavor: m1.medium.cpu-shared
       key_name: cloud3
