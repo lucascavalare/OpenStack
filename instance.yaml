@@ -22,7 +22,9 @@ resources:
             systemctl enable nginx
             systemctl start nginx
             echo 'OpenStack-Nginx-Node1' > /var/share/nginx/html/index.html
-
+         params:
+           $shared_ip: flavor
+           
       name: openstack-nginx-node2
       image: 'CentOS-7-x86_64'
       flavor: m1.medium.cpu-shared
@@ -41,6 +43,8 @@ resources:
             systemctl enable nginx
             systemctl start nginx
             echo 'OpenStack-Nginx-Node2' > /var/share/nginx/html/index.html
+         params:
+           $shared_ip: flavor
 
    
    
