@@ -20,7 +20,7 @@ resources:
         yum install nginx
         systemctl enable nginx
         systemctl start nginx
-        echo 'OpenStack-Nginx-Node1' > /var/www/html/index.html
+        echo 'OpenStack-Nginx-Node1' > /var/share/nginx/html/index.html
         
       name: openStack-nginx-node2
       image: 'CentOS-7-x86_64'
@@ -38,7 +38,7 @@ resources:
         yum install nginx
         systemctl enable nginx
         systemctl start nginx
-        echo 'OpenStack-Nginx-Node2' > /var/www/html/index.html
+        echo 'OpenStack-Nginx-Node2' > /var/share/nginx/html/index.html
         
    
    
