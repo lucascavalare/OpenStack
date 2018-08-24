@@ -24,7 +24,7 @@ resources:
             yum install -y nginx
             systemctl enable nginx
             systemctl start nginx
-            echo 'OpenStack-Nginx-Node1' > /var/share/nginx/html/index.html
+            echo 'OpenStack-Nginx-Node1' > /vusr/share/nginx/html/index.html
           params:
            $shared_ip: flavor
            
@@ -46,7 +46,7 @@ resources:
             yum install -y nginx
             systemctl enable nginx
             systemctl start nginx
-            echo 'OpenStack-Nginx-Node2' > /var/share/nginx/html/index.html
+            echo 'OpenStack-Nginx-Node2' > /usr/share/nginx/html/index.html
           params:
            $shared_ip: flavor
 
