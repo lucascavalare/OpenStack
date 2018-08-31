@@ -36,4 +36,55 @@ resources:
       cooldown: 60
       scaling_adjustment: '-1'
 
+  # Load Balancer
+  lb_vip_port:
+    type: OS::Neutron::Port
+    properties:
+      security_groups: [default, global_ssh, global_http]
+      network_id: private_and_floating-ip
+      fixed_ips:
+        - subnet_id: private_subnet_ipv4
+
+  lb_vip_floating_ip:
+    type: OS::Neutron::FloatingIP
+    properties:
+      floating_network_id: public
+      port_id: { get_resource: lb_vip_port }
+
+  lb_pool_vip:
+    type: OS::Neutron::FloatingIPAssociation
+    properties:
+      floatingip_id: { get_resource: lb_vip_floating_ip }
+#      port_id: { 'Fn::Select': ['port_id', {get_attr: [pool, vip] } ] }
+      port_id: { get_attr: [ pool, vip, port_id ] }
+
+  monitor:
+    type: OS::Neutron::HealthMonitor
+    properties:
+      type: HTTP
+      delay: 15
+      max_retries: 5
+      timeout: 10
+
+  pool:
+    type: OS::Neutron::Pool
+    properties:
+      name: lb_front_pool
+      protocol: HTTP
+      subnet_id: private_subnet_ipv4
+      lb_method: ROUND_ROBIN
+      monitors: [ { get_resource: monitor } ]
+      vip:
+        name: front_vip
+        description: Front-end virtual IP (VIP)
+        protocol_port: 80
+#        session_persistence:
+#          type: SOURCE_IP
+
+  lbaas:
+    type: OS::Neutron::LoadBalancer
+    properties:
+      members: [ { get_resource: openstack-nginx-node1 }, { get_resource: openstack-nginx-node2 } ]
+      pool_id: { get_resource: pool }
+protocol_port: 80
   
