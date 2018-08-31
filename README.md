@@ -26,9 +26,7 @@
               
               # Can be preeced of the 
               compilation terminated.
-              error: command 'gcc' failed with exit status 1
-              
-                https://gist.github.com/kenzo0107/f204c7af2b764d15a6c6
+              [error: command 'gcc' failed with exit status 1](https://gist.github.com/kenzo0107/f204c7af2b764d15a6c6)
                 
               
               
