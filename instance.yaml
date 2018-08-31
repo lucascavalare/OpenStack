@@ -12,7 +12,7 @@ resources:
       key_name: cloud3
       security_groups: [default, global_ssh, global_http] 
       networks:
-        - network: public
+        - network: private_and_floating-ip
       user_data:
         str_replace:
           template: |
@@ -38,7 +38,7 @@ resources:
       key_name: cloud3
       security_groups: [default, global_ssh, global_http] 
       networks:
-        - network: public
+        - network: private_and_floating-ip
       user_data:
         str_replace:
           template: |
