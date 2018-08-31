@@ -17,8 +17,8 @@ resources:
       resource:
         type: instance.yaml
       min_size: 1
-      desired_capacity: 2
-      max_size: 3
+      desired_capacity: 1
+      max_size: 2
 
   scale_up_policy:
     type: OS::Heat::ScalingPolicy
