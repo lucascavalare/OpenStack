@@ -49,8 +49,8 @@ resources:
             systemctl enable nginx
             systemctl start nginx
             sed '$ a Welcome to nginx2!' /usr/share/nginx/html/index.html
-         params:
-           $shared_ip: flavor
+          params:
+            $shared_ip: flavor
 
    
    
