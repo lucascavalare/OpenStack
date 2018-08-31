@@ -86,5 +86,5 @@ resources:
     properties:
       members: [ { get_resource: openstack-nginx-node1 }, { get_resource: openstack-nginx-node2 } ]
       pool_id: { get_resource: pool }
-protocol_port: 80
+      protocol_port: 80
   
